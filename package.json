@@ -9,6 +9,8 @@
     "dev": "node --watch server.js",
     "firestore:check": "node scripts/firestore-check.js",
     "firestore:push": "node scripts/firestore-check.js --push",
+    "build:functions": "node scripts/prepare-functions.js",
+    "deploy": "node scripts/prepare-functions.js && firebase deploy --only functions,hosting --project clinic-991d5",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report"

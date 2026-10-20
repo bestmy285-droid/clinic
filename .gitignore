@@ -1,6 +1,10 @@
 node_modules/
+functions/node_modules/
+functions/lib/
+functions/public/
 test-results/
 playwright-report/
+.firebase/
 data/*.json
 secrets/
 *.log

@@ -121,6 +121,36 @@ npx playwright test tests/staff.spec.js
 - Still missing: a password-change screen, per-user session revocation, and multi-user
   roles beyond the three seeded accounts.
 
+## Live on Firebase
+
+The public deployment runs as a 2nd-gen Cloud Function in `asia-south1` behind
+Firebase Hosting:
+
+- URL: <https://clinic-991d5.web.app>
+- Storage: Firestore (`clinics/clinic-desk`), not the local JSON file
+- `firebase.json` rewrites every Hosting path to the `clinic` function
+- `functions/index.js` loads the store from Firestore and buffers each request body
+  before boot, because a cold start can outlast the request stream
+
+Deploy:
+
+```powershell
+npm run deploy
+```
+
+This copies `lib/` and `public/` into `functions/` (predeploy), then deploys functions
+and hosting. Requires `firebase-tools` and `firebase login`.
+
+Notes:
+
+- `maxInstances: 1` keeps sessions and the in-memory copy consistent. Sessions live in
+  memory, so a cold start or a new revision logs everyone out.
+- The session cookie is named `__session` because Firebase Hosting forwards only that
+  cookie to the backend.
+- Do not run the local app against the same Firestore document while the live site is
+  in use: both write the whole snapshot, so the last save wins. For local development
+  use `FIRESTORE_MIRROR=off npm start`.
+
 ## Deploy (Docker + HTTPS)
 
 ```powershell
@@ -143,7 +173,10 @@ JSON file encrypted and off the server. Restore uses the same screen and is audi
 ```
 server.js              HTTP server entry
 lib/db.js              JSON store, seed data, reset
-lib/firestore.js       Firestore mirror of the JSON store
+lib/firestore.js       Firestore mirror / cloud store
+lib/headers.js         shared security headers
+functions/index.js     Firebase Cloud Function entry
+firebase.json          Hosting rewrite + functions config
 lib/clinic.js          slots, booking rules, conflicts, statuses, audit
 lib/app.js             routes, pages, backup/restore, test hooks
 lib/html.js            layout, formatting, badges

@@ -81,7 +81,7 @@ test('TC-37 idle session timeout', async ({ page }) => {
   expect(res.headers()['x-frame-options']).toBe('DENY');
   expect(res.headers()['x-content-type-options']).toBe('nosniff');
   expect(res.headers()['content-security-policy']).toContain("default-src 'self'");
-  const cookie = (await page.context().cookies()).find(x => x.name === 'sid');
+  const cookie = (await page.context().cookies()).find(x => x.name === '__session');
   expect(cookie.httpOnly).toBe(true);
   expect(cookie.sameSite).toBe('Lax');
 
