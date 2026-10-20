@@ -2,6 +2,9 @@
 
 // Cloud entry point. Firestore is the store here; no local JSON file is written.
 process.env.STORAGE = 'firestore';
+// The public Hosting domains; the backend sees a run.app Host header.
+process.env.PUBLIC_HOSTS = process.env.PUBLIC_HOSTS
+  || 'clinic-991d5.web.app,clinic-991d5.firebaseapp.com';
 
 const { onRequest } = require('firebase-functions/v2/https');
 const { setGlobalOptions } = require('firebase-functions/v2');
