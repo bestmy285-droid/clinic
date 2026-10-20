@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "node --watch server.js",
     "firestore:check": "node scripts/firestore-check.js",
     "firestore:push": "node scripts/firestore-check.js --push",
     "test": "playwright test",

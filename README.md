@@ -10,6 +10,8 @@ is verbal and on screen, with a next-day call list for manual reminders.
 npm start
 ```
 
+While changing code, use `npm run dev` instead: it restarts the server on every save.
+
 Open <http://127.0.0.1:3000>.
 
 | Role         | Email                     | Password    |
