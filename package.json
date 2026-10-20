@@ -1,0 +1,28 @@
+{
+  "name": "clinic-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Staff-only clinic appointment booking built from the patient-appointment-booking RFP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "firestore:check": "node scripts/firestore-check.js",
+    "firestore:push": "node scripts/firestore-check.js --push",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "keywords": [
+    "clinic",
+    "appointments",
+    "playwright"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.10.0"
+  }
+}

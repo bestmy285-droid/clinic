@@ -1,0 +1,13 @@
+node_modules
+tests
+test-results
+playwright-report
+evidence
+rfp
+.opencode
+data
+secrets
+.git
+.gitignore
+playwright.config.js
+README.md

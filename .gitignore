@@ -1,0 +1,9 @@
+node_modules/
+test-results/
+playwright-report/
+data/*.json
+secrets/
+*.log
+.DS_Store
+Thumbs.db
+उसे यहाँ रखें: D:\Clinic\secrets\serviceAccountKey.json
